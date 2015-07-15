@@ -1,0 +1,19 @@
+{
+	"name": "iqnection-pages/protectedminisite",
+	"description": "SilverStripe 3 Protected Mini Site",
+	"type": "silverstripe-pages",
+	"keywords": ["iqnection","pages"],
+	"authors": [
+		{
+			"name": "IQnection",
+            "homepage": "http://www.iqnection.com"
+		}
+	],
+	"require": {
+		"silverstripe/framework": ">=3.0",
+		"iqnection-pages/basepages":"*"
+	},
+	"extra": {
+		"installer-name": "iq-protectedminisite"
+	}
+}
