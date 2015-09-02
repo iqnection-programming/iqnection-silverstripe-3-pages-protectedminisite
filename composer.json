@@ -1,7 +1,7 @@
 {
 	"name": "iqnection-pages/protectedminisite",
 	"description": "SilverStripe 3 Protected Mini Site",
-	"type": "silverstripe-pages",
+	"type": "silverstripe-module",
 	"keywords": ["iqnection","pages"],
 	"authors": [
 		{
