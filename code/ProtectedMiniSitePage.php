@@ -10,7 +10,7 @@
 		);
 		
 		private static $has_one = array(
-			'ProtectedMiniSite' => 'ProtectedMiniSite'
+			'ProtectedMiniSitePage' => 'ProtectedMiniSitePage'
 		);
 		
 		private static $summary_fields = array(
@@ -28,10 +28,10 @@
 			$fields->addFieldToTab("Root.Sidebar", new HTMLEditorField("SidebarContent", "Sidebar Content"));	
 			
 			// create a list of all child pages 
-			if ($this->ProtectedMiniSiteID)
+			if ($this->ProtectedMiniSitePageID)
 			{
 				$pagesArray = array();
-				$this->getPagesArray($this->ProtectedMiniSiteID,$pagesArray,0);			
+				$this->getPagesArray($this->ProtectedMiniSitePageID,$pagesArray,0);			
 				$fields->addFieldToTab('Root.Main', $pagesField = new CheckboxSetField('AccessPageIDs','Allowed Pages',$pagesArray) );
 				$pagesField->addExtraClass('vertical');
 			}
@@ -129,7 +129,7 @@
 		}
 	}
 	
-	class ProtectedMiniSite_Controller extends Page_Controller
+	class ProtectedMiniSitePage_Controller extends Page_Controller
 	{
 		static $allowed_actions = array(
 			'login',
@@ -147,7 +147,8 @@
 			return array_merge(
 				parent::PageCSS(),
 				array(
-					ViewableData::themeDir().'/css/form.css'
+					ViewableData::themeDir().'/css/form.css',
+					'iq-protectedminisite/css/pages/ProtectedMiniSitePage.css'
 				)
 			);
 		}
@@ -165,7 +166,7 @@
 		function SecureLoginForm()
 		{
 			if ($message = Session::get('FormError')) Session::set('FormError',false);
-			return new Form(
+			$form = new Form(
 				$this,
 				'SecureLoginForm',
 				new FieldList(
@@ -180,6 +181,10 @@
 					array('Username','Password')
 				)
 			);
+			$this->extend('updateSecureLoginForm',$form);
+
+
+			return $form;
 		}
 		
 		function doProtectedPagesLogin($data,$form)
@@ -189,7 +194,7 @@
 				return $this->redirect($this->Link('login'));
 			}
 			
-			if ($user = DataObject::get_one('ProtectedMiniSiteUser',"ProtectedMiniSiteID = ".$this->ID." AND Username = '".Convert::raw2sql($data['Username'])."' AND Password = '".Convert::raw2sql($data['Password'])."'"))
+			if ($user = DataObject::get_one('ProtectedMiniSiteUser',"ProtectedMiniSitePageID = ".$this->ID." AND Username = '".Convert::raw2sql($data['Username'])."' AND Password = '".Convert::raw2sql($data['Password'])."'"))
 			{
 				$user->login();
 				return $this->redirect($this->Link());
