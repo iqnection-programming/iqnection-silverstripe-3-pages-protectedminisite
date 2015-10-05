@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [0.1.1]
+- Corrected page names with css files
+
 ## [0.0.3]
 - Corrected file names and class names
 

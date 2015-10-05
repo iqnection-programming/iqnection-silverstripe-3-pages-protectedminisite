@@ -97,7 +97,7 @@
 		}
 	}
 	
-	class ProtectedMiniSitePage extends Page
+	class ProtectedMiniSite extends Page
 	{
 		private static $allowed_children = array(
 			'ProtectedMiniSiteChildPage'
@@ -129,7 +129,7 @@
 		}
 	}
 	
-	class ProtectedMiniSitePage_Controller extends Page_Controller
+	class ProtectedMiniSite_Controller extends Page_Controller
 	{
 		static $allowed_actions = array(
 			'login',
@@ -148,7 +148,7 @@
 				parent::PageCSS(),
 				array(
 					ViewableData::themeDir().'/css/form.css',
-					'iq-protectedminisite/css/pages/ProtectedMiniSitePage.css'
+					'iq-protectedminisite/css/pages/ProtectedMiniSite.css'
 				)
 			);
 		}
