@@ -10,7 +10,7 @@
 		);
 		
 		private static $has_one = array(
-			'ProtectedMiniSitePage' => 'ProtectedMiniSitePage'
+			'ProtectedMiniSite' => 'ProtectedMiniSite'
 		);
 		
 		private static $summary_fields = array(
@@ -22,16 +22,11 @@
 			$fields = parent::getCMSFields();
 			$fields->removeByName('UniqueHash');
 			
-			$fields->addFieldToTab("Root.Columns", new HTMLEditorField("LeftColumn", "Left Column Content"));  
-			$fields->addFieldToTab("Root.Columns", new HTMLEditorField("CenterColumn", "Center Column Content"));  
-			$fields->addFieldToTab("Root.Columns", new HTMLEditorField("RightColumn", "Right Column Content")); 
-			$fields->addFieldToTab("Root.Sidebar", new HTMLEditorField("SidebarContent", "Sidebar Content"));	
-			
 			// create a list of all child pages 
-			if ($this->ProtectedMiniSitePageID)
+			if ($this->ProtectedMiniSiteID)
 			{
 				$pagesArray = array();
-				$this->getPagesArray($this->ProtectedMiniSitePageID,$pagesArray,0);			
+				$this->getPagesArray($this->ProtectedMiniSiteID,$pagesArray,0);			
 				$fields->addFieldToTab('Root.Main', $pagesField = new CheckboxSetField('AccessPageIDs','Allowed Pages',$pagesArray) );
 				$pagesField->addExtraClass('vertical');
 			}
