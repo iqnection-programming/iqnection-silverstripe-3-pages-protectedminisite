@@ -2,6 +2,9 @@
 # Change Log
 
 
+## [0.1.3]
+- More bug fixes with template and page names
+
 ## [0.1.2]
 - Corrected page names within PHP files (missed some)
 

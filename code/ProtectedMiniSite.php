@@ -189,7 +189,7 @@
 				return $this->redirect($this->Link('login'));
 			}
 			
-			if ($user = DataObject::get_one('ProtectedMiniSiteUser',"ProtectedMiniSitePageID = ".$this->ID." AND Username = '".Convert::raw2sql($data['Username'])."' AND Password = '".Convert::raw2sql($data['Password'])."'"))
+			if ($user = DataObject::get_one('ProtectedMiniSiteUser',"ProtectedMiniSiteID = ".$this->ID." AND Username = '".Convert::raw2sql($data['Username'])."' AND Password = '".Convert::raw2sql($data['Password'])."'"))
 			{
 				$user->login();
 				return $this->redirect($this->Link());
